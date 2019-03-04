@@ -34,10 +34,12 @@
 
 // options to control how MicroPython is built
 
+#define MICROPY_GC_STACK_ENTRY_TYPE                 uint16_t
 #define MICROPY_ALLOC_PATH_MAX                      (128)
 #define MICROPY_PERSISTENT_CODE_LOAD                (1)
 #define MICROPY_EMIT_THUMB                          (0)
 #define MICROPY_EMIT_INLINE_THUMB                   (0)
+#define MICROPY_COMP_CONST_LITERAL                  (0)
 #define MICROPY_COMP_MODULE_CONST                   (1)
 #define MICROPY_ENABLE_GC                           (1)
 #define MICROPY_ENABLE_FINALISER                    (1)
@@ -131,8 +133,8 @@
     X(ETIMEDOUT) \
 
 // TODO these should be generic, not bound to fatfs
-#define mp_type_fileio fatfs_type_fileio
-#define mp_type_textio fatfs_type_textio
+#define mp_type_fileio mp_type_vfs_fat_fileio
+#define mp_type_textio mp_type_vfs_fat_textio
 
 // use vfs's functions for import stat and builtin open
 #define mp_import_stat mp_vfs_import_stat
